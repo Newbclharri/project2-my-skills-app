@@ -1,0 +1,31 @@
+:root{
+    --mainBgColor: blue;
+    --lightBgColor: lightgray;
+    --mainFont: 'Indie FLower', cursive;
+    --fontSizeBig: 25px;
+    --fontSize: 30px;
+}
+
+*{
+    border: 2px solid red;
+    margin: 0px;
+    padding: 0px;
+    font-family: var(--mainFont);
+}
+
+body{
+    font-size: var(--fontSize);
+}
+
+input{
+    font-size: var(--fontSize);
+}
+
+
+/* partials ________________________________________________ */
+header{
+    margin: auto;
+    width: fit-content;
+    font-size: var(--fontSizeBig);
+}
+/* index_ejs_______________________________________________ */

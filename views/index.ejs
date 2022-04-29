@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="index_ejs" lang="en">
+<%- include("./partials/head.ejs") %> 
+<body>
+    <%- include("./partials/header.ejs") %> 
+    <main>
+        <section class="add-params">
+            
+            <form action="/skill" method="post">
+                <input type="text" name="skill" placeholder="skill">
+                <input type="text" name="resource" placeholder="resource">
+                <input type="submit" value="Add">
+            </form>
+
+        </section>
+        <section class="display-skills"> 
+            <% for(skill of skills) {%> 
+            <label class="container"><a href="<%= skill.resource %>"><%= skill.text %></a>
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <%} %> 
+        </section>
+    </main>
+    
+</body>
+</html>
