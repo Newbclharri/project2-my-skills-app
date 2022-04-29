@@ -17,6 +17,29 @@ body{
     font-size: var(--fontSize);
 }
 
+/* label{
+    margin-top: 20px;
+} */
+
+a{
+    text-decoration: none;
+}
+
+a :hover{
+    color: orange;
+}
+
+input[type="checkbox"]{
+    /* margin-left: 10px;
+    margin-right: 20px; */
+    margin: auto;
+    width: 25px;
+    height: 25px;
+}
+
+.checkmark{
+}
+
 input{
     font-size: var(--fontSize);
 }
@@ -29,3 +52,30 @@ header{
     font-size: var(--fontSizeBig);
 }
 /* index_ejs_______________________________________________ */
+.skill{
+    width: fit-content;
+    display: inline;
+    margin-left: 20px;
+}
+
+.index_ejs section{
+    
+    width: 80%;
+}
+
+.display-skills{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.checkmark :after{
+    display:block;
+}
+
+.checked{
+    text-decoration: line-through;
+}
+
+input[type="checkbox"]:checked + label{
+    text-decoration: line-through;
+}
