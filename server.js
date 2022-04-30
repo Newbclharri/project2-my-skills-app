@@ -1,7 +1,6 @@
 ////////////////////////
 // Setup - Import deps and create app object
 ////////////////////////
-require("dotenv").config();
 
 const express = require("express"); //server framework
 const PORT = process.env.PORT || 4000
@@ -21,9 +20,9 @@ const app = express();
 //////////////////////
 // Declare Middleware
 //////////////////////
-app.use(methodOverride("_method")); //overide form submission methods
 app.use(express.urlencoded({extended: true})); //parse form submission data
 app.use("/static", express.static("static")); //serve static files
+app.use(methodOverride("_method")); //overide form submission methods
 app.use(SkillRouter); //access routes
 app.use(morgan("dev"));  //log requests to server
 
