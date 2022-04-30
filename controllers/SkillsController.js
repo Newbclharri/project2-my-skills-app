@@ -20,7 +20,6 @@ router.get("/skills", async (req, res) =>{
 
 //create
 router.post("/skill", async (req, res) =>{
-    console.log(req.body.checked)
     const skill = req.body.skill;
     const resource = req.body.resource || "https://www.google.com/"
     await Skill.create({

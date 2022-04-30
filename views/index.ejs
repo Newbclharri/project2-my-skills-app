@@ -35,8 +35,7 @@
                     </div>                                       
                     <form name="<%=i%>" id="f<%=i%>" action="/<%= skills[i]._id %>?_method=PUT" method="post" class="container">
                         
-                        <input class="checkbox" onChange="formSubmit('f<%=i%>')"
-                        type="checkbox" name="checkbox" id="<%= skills[i]._id %>">
+                        <input class="checkbox" onChange="formSubmit('f<%=i%>')" type="checkbox" name="checkbox" id="<%= skills[i]._id %>">
                             <a href="<%= skills[i].resource %>" target="blank"> <div class="skill <%= skills[i].completed ? 'checked' : null %>"><%= skills[i].text %></div></a>
                             
                             <% if(skills[i].completed) {%>
@@ -56,7 +55,7 @@
             <!-- -----------------Journals---------------------- -->
             <section class="journal-section">
                 <h1 style="color: purple">Journals:</h1>
-                <form action="/journal" method="post" id="create-entry">
+                <form action="/journal" method="post">
                     <label for="skills">Select a skill to journal:</label> <br>
                     <select name="skill" id="skills" onchange="displayDiv('hiddenDiv')" placeholder="skills">
                         <option value="">select</option>
@@ -67,8 +66,8 @@
                     <div id="hiddenDiv" style="display: none">
                         <input id="jrnl-entry" type="text" name="entry"> <br>
                         <div class="hidden-btns">
-                            <!-- <button id="cancel-jrnl" class="cancel" type="button" onclick="clearContent('jrnl-entry')">Cancel</button> -->
-                            <input class="add" type="submit" value="Add Entry" form="create-entry">
+                            <button id="cancel-jrnl" class="cancel" type="button" onclick="clearContent('jrnl-entry')">Cancel</button>
+                            <input class="add" type="submit" value="Add Entry">
                         </div>                           
                     </div>                                                              
                 </form> <br>
@@ -100,9 +99,7 @@
             const hiddenDiv = document.getElementById("hiddenDiv")
             const jrnlEntry = document.getElementById(id)
             jrnlEntry.value = null;
-            if(hiddenDiv.style.display === "block"){
-                hiddenDiv.style.display = "none"
-            }
+            
         }
     </script>                     
     <script>

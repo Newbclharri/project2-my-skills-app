@@ -4,7 +4,7 @@
 
 const express = require("express"); //server framework
 const PORT = process.env.PORT || 4000
-const MONGO = process.env.MONGO || "localhost:3000/skills"
+const MONGO = process.env.DATABASE_URL || "localhost:3000/skills"
 const mongoose = require("./models/connection"); // work with DB
 const Skill = require("./models/Skill"); //work with Skill Schema
 const Journal = require("./models/Journal");
