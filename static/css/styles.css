@@ -71,7 +71,6 @@ input[type="submit"]{
     padding: 5px;
     border-radius: 14px;
     box-shadow: var(--boxShadow);
-    transition: .2s;
 }
 
 .update{
@@ -209,13 +208,6 @@ border-radius: 50px;
     display: none;
 }
 
-.zoom{
-    transition: transform .2s;
-}
-.zoom :hover{
-    transform: scale(1.5);
-    background-color: aliceblue;
-}
 
 .add{
     background-color:aquamarine;

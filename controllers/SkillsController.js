@@ -18,10 +18,6 @@ router.get("/skills", async (req, res) =>{
         entries: entries});
 })
 
-
-
-
-
 //create
 router.post("/skill", async (req, res) =>{
     console.log(req.body.checked)

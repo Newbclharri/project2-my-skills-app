@@ -4,6 +4,8 @@
 require("dotenv").config();
 
 const express = require("express"); //server framework
+const PORT = process.env.PORT || 4000
+const MONGO = process.env.MONGO || "localhost:3000/skills"
 const mongoose = require("./models/connection"); // work with DB
 const Skill = require("./models/Skill"); //work with Skill Schema
 const Journal = require("./models/Journal");
@@ -13,7 +15,7 @@ const morgan = require("morgan") //log request to my server
 
 //Create Express Application
 const app = express();
-const PORT = process.env.PORT;
+
 
 
 //////////////////////
