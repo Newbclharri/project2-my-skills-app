@@ -2,9 +2,19 @@
 <html class="index_ejs" lang="en">
     <head>
         <%- include("./partials/head.ejs") %>
+        <script>
+            const skills = <%- JSON.stringify(skills)%>
+            const entries = <%- JSON.stringify(entries)%>
+            const forms = document.querySelectorAll("form")
+            let inputCheck = null;
+            let button = null;
+        </script>
     </head>
     <body>
-        <%- include("./partials/header.ejs") %> 
+        <header>
+            <h1>My Skills</h1>
+        </header>
+        <%- include("./partials/nav.ejs") %> 
         <main>
             <section class="add-params">                
                 <form action="/skill" method="post">
@@ -14,16 +24,10 @@
                 </form>
             </section>
             <section class="display-skills"> 
-                <script>
-                    const skills = <%- JSON.stringify(skills)%>
-                    const forms = document.querySelectorAll("form")
-                    console.log(skills)
-                    let inputCheck = null;
-                    let button = null;
-                </script>
+               
                 <% for(i = 0; i < skills.length; i++) {%>
                     <div class="actions-conatiner">
-                        <form action="" id="ed<%= skills[i]._id %>" class="action">
+                        <form action="/skill/<%= skills[i]._id %>" id="ed<%= skills[i]._id %>" class="action">
                             <input type="submit" value="edit" class="action-input">
                         </form>
                         <form action="/<%= skills[i]._id %>?_method=DELETE" method="post" class="action">
@@ -35,12 +39,7 @@
                         <input class="checkbox" onChange="formSubmit(<%=i%>)"
                         type="checkbox" name="checkbox" id="<%= skills[i]._id %>">
                             <a href="<%= skills[i].resource %>" target="blank"> <div class="skill <%= skills[i].completed ? 'checked' : null %>"><%= skills[i].text %></div></a>
-                            <script>
-                                function formSubmit(num){
-                                    document.getElementById(num).submit()
-                                    let formEdit = document.getElementById(`ed${skills[<%=i%>]._id}`)
-                                }
-                            </script>
+                            
                             <% if(skills[i].completed) {%>
                             <script>
                                 inputCheck = document.getElementById(`${skills[<%=i%>]._id}`)
@@ -55,39 +54,51 @@
             <br>
             <div class="divider"></div>
             <br>
+            <!-- -----------------Journals---------------------- -->
             <section class="journal-section">
-                <h1>Journals:</h1>
-                <div class="select-container">
-                    <form action="" style=" width: fit-content;">
-                        <label for="skills">Select a skill to journal:</label> <br>
-                        <select name="skills" id="skills" onchange="displayDiv('hiddenDiv')" placeholder="skills">
-                            <option value="">select</option>
-                            <% for(skill of skills) {%>
-                                <option value="<%= skill.text %>" style="display: block;"><%= skill.text %></option>
-                            <%}%> 
-                        </select> <br>
-                        <div id="hiddenDiv" style="display: none; position: relative">
-                            <input id="jrnl-entry" type="text" name="entry"> <br>
-                            <button id="cancel-jrnl" type="button" onclick="clearContent('jrnl-entry')">Cancel</button>
-                            <input type="submit" value="Add Entry" style="position: absolute; right: 0px">   
-                        </div>                                                              
-                    </form>  
-                    <script>
-                        function clearContent(id){
-                            const jrnlEntry = document.getElementById(id)
-                            jrnlEntry.value = null;
-                        }
-                    </script>                     
-                </div>
-                <script>
-                    function displayDiv(id){
-                        const textBox = document.getElementById(id)
-                        if(textBox.style.display === "none"){
-                            textBox.style.display = "block"
-                        }
-                    }
-                </script>
+                <h1 style="color: purple">Journals:</h1>
+                <form action="/journal" method="post">
+                    <label for="skills">Select a skill to journal:</label> <br>
+                    <select name="skill" id="skills" onchange="displayDiv('hiddenDiv')" placeholder="skills">
+                        <option value="">select</option>
+                        <% for(skill of skills) {%>
+                            <option value="<%= skill.text %>" style="display: block;"><%= skill.text %></option>
+                        <%}%> 
+                    </select> <br>
+                    <div id="hiddenDiv" style="display: none; width: fit-content; position: relative">
+                        <input id="jrnl-entry" type="text" name="entry"> <br>
+                        <button id="cancel-jrnl" type="button" onclick="clearContent('jrnl-entry')">Cancel</button>
+                        <input type="submit" value="Add Entry" style="position: absolute; right: 0px">   
+                    </div>                                                              
+                </form> <br>
+                <% for(i = entries.length-1; i >= 0; i--) {%>
+                    <div class="entry-container">
+                        <h3>Skill: <%=entries[i].title%></h3>
+                        <p><%=entries[i].text%></p>
+                        <p class="log"><%=entries[i].createdAt%></p>
+                        <div class="entry-divider"></div>
+                    </div>                  
+                <%}  %>                
             </section>
         </main>         
     </body>
+    <script>
+        function formSubmit(num){
+            document.getElementById(num).submit()
+        }
+    </script>
+    <script>
+        function clearContent(id){
+            const jrnlEntry = document.getElementById(id)
+            jrnlEntry.value = null;
+        }
+    </script>                     
+    <script>
+        function displayDiv(id){
+            const textBox = document.getElementById(id)
+            if(textBox.style.display === "none"){
+                textBox.style.display = "block"
+            }
+        }
+    </script>
 </html>

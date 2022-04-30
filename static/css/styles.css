@@ -17,9 +17,13 @@ body{
     font-size: var(--fontSize);
 }
 
+header{
+    margin: auto;
+    width: fit-content;
+    font-size: var(--fontSizeBig);
+}
 
-
-a{
+.index_ejs a{
     text-decoration: none;
 }
 
@@ -45,11 +49,22 @@ input{
 
 
 /* partials ________________________________________________ */
-header{
-    margin: auto;
-    width: fit-content;
-    font-size: var(--fontSizeBig);
+nav{
+    background-color: rgb(34, 126, 126);
 }
+nav a{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    justify-content: center;
+}
+.nav-links :hover{
+    background-color: rgba(0, 255, 255, 0.432);
+    color: cyan;
+}
+
+ 
+
 /* index_ejs_______________________________________________ */
 
 
@@ -81,6 +96,27 @@ header{
 
 .divider{
     width: 100%;
-    height: 10px;
-    background-image: linear-gradient(to right, white, gray, black, purple);
+    height: 5px;
+    background-image: linear-gradient(to left, white, gray, black, purple);
+}
+
+.log{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 15px;
+    color: lightgray;
+}
+
+.entry-container{
+    width: 50%; 
+}
+
+.entry-divider{
+width: 100%;
+height: 5px;
+background-image: linear-gradient(to left, white, aqua, black);
+border-radius: 50px;
+}
+
+.edit-entry{
+    width: 100%;
 }

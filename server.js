@@ -19,9 +19,9 @@ const PORT = process.env.PORT;
 //////////////////////
 // Declare Middleware
 //////////////////////
+app.use(methodOverride("_method")); //overide form submission methods
 app.use(express.urlencoded({extended: true})); //parse form submission data
 app.use("/static", express.static("static")); //serve static files
-app.use(methodOverride("_method")); //overide form submission methods
 app.use(SkillRouter); //access routes
 app.use(morgan("dev"));  //log requests to server
 

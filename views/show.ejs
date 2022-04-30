@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("./partials/head.ejs") %>
+        <script>
+            const skill = <%- JSON.stringify(skill) %>
+            const entries = <%- JSON.stringify(entries) %>
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Skill: <%= skill.text %></h1>
+        </header>
+        <%- include("./partials/nav.ejs") %> <br>
+        <main>
+            
+            <form action="/edit/<%= skill._id %>?_method=PUT" method="post">
+                <section class="skill-params"></section>
+                    <input type="text" name="skill" value="<%= skill.text %>">
+                    <input type="text" name="resource" value="<%= skill.resource %>">
+                </section> <br> <br> <br> <br> <br>
+
+                <section class="skill-entries">
+                    <h1 style="color: blue">Entries:</h1> <br>                    
+                    <% for(i = entries.length-1; i >= 0; i--) {%>
+                        <div class="entry-container">
+                            <input class="edit-entry" type="text" name= text value="<%= entries[i].text %> ">
+                            <p class="log"><%=entries[i].createdAt%></p>
+                            <div class="entry-divider"></div>
+                        </div>                  
+                    <%}  %>
+                    <input type="submit" value="update">
+                </section> 
+            </form>                       
+        </main>
+    </body>    
+</html>
