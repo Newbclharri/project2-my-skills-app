@@ -22,7 +22,6 @@
                     let button = null;
                 </script>
                 <% for(i = 0; i < skills.length; i++) {%>
-
                     <div class="actions-conatiner">
                         <form action="" id="ed<%= skills[i]._id %>" class="action">
                             <input type="submit" value="edit" class="action-input">
@@ -30,8 +29,7 @@
                         <form action="/<%= skills[i]._id %>?_method=DELETE" method="post" class="action">
                             <input type="submit" value="delete" class="action-input">
                         </form>
-                    </div>
-                                        
+                    </div>                                        
                     <form name="<%=i%>" id="<%=i%>" action="/<%= skills[i]._id %>?_method=PUT" method="post" class="container">
                         
                         <input class="checkbox" onChange="formSubmit(<%=i%>)"
@@ -51,8 +49,7 @@
                             </script>                          
                         <span class="checkmark"></span>
                     </form>                   
-                        <%} %>                        
-                        
+                        <%} %>                  
                 <%} %>                            
             </section>
             <br>
@@ -60,6 +57,36 @@
             <br>
             <section class="journal-section">
                 <h1>Journals:</h1>
+                <div class="select-container">
+                    <form action="" style=" width: fit-content;">
+                        <label for="skills">Select a skill to journal:</label> <br>
+                        <select name="skills" id="skills" onchange="displayDiv('hiddenDiv')" placeholder="skills">
+                            <option value="">select</option>
+                            <% for(skill of skills) {%>
+                                <option value="<%= skill.text %>" style="display: block;"><%= skill.text %></option>
+                            <%}%> 
+                        </select> <br>
+                        <div id="hiddenDiv" style="display: none; position: relative">
+                            <input id="jrnl-entry" type="text" name="entry"> <br>
+                            <button id="cancel-jrnl" type="button" onclick="clearContent('jrnl-entry')">Cancel</button>
+                            <input type="submit" value="Add Entry" style="position: absolute; right: 0px">   
+                        </div>                                                              
+                    </form>  
+                    <script>
+                        function clearContent(id){
+                            const jrnlEntry = document.getElementById(id)
+                            jrnlEntry.value = null;
+                        }
+                    </script>                     
+                </div>
+                <script>
+                    function displayDiv(id){
+                        const textBox = document.getElementById(id)
+                        if(textBox.style.display === "none"){
+                            textBox.style.display = "block"
+                        }
+                    }
+                </script>
             </section>
         </main>         
     </body>

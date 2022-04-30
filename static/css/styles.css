@@ -7,7 +7,7 @@
 }
 
 *{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     margin: 0px;
     padding: 0px;
     font-family: var(--mainFont);
@@ -81,5 +81,6 @@ header{
 
 .divider{
     width: 100%;
-    background-color: black;
+    height: 10px;
+    background-image: linear-gradient(to right, white, gray, black, purple);
 }
