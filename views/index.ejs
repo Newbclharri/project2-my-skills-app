@@ -26,11 +26,11 @@
             <section class="display-skills">                
                 <% for(i = 0; i < skills.length; i++) {%>
                     <div class="actions-conatiner" style="margin-bottom: 7px">
-                        <form id="edit "action="/skill/<%= skills[i]._id %>" id="ed<%= skills[i]._id %>" class="action">
-                            <input type="submit" value="edit" class="action-input" form="edit">
+                        <form action="/skill/<%= skills[i]._id %>" id="ed<%= skills[i]._id %>" class="action">
+                            <input type="submit" value="edit" class="action-input">
                         </form>
-                        <form action="/<%= skills[i]._id %>?_method=DELETE" method="post" class="action" id="delete-skill">
-                            <input type="submit" value="delete" class="action-input" form="delete-skill">
+                        <form action="/<%= skills[i]._id %>?_method=DELETE" method="post" class="action">
+                            <input type="submit" value="delete" class="action-input">
                         </form>
                     </div>                                       
                     <form name="<%=i%>" id="f<%=i%>" action="/<%= skills[i]._id %>?_method=PUT" method="post" class="container">
