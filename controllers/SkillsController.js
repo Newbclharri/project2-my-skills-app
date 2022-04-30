@@ -32,18 +32,24 @@ router.post("/skill", async (req, res) =>{
         completed: false
     }).catch(err=> res.send(err))
 
-    res.send("post successful")
+    res.redirect("/skills")
 })
 
 //update
 router.put("/:id", async (req, res)=>{
     const id = req.params.id
     const status = !!req.body.checked
-    console.log(req.body.checkbox)
     const skill = await Skill.findById(id).catch(err => res.send(err))
     skill.completed = !skill.completed
     await skill.save().catch(err => res.send(err))
     res.redirect("/skills")
+})
+
+//delete
+router.delete("/:id", async (req, res) =>{
+    const id = req.params.id
+    await Skill.findByIdAndDelete(id).catch(err => res.send(err))
+    res.redirect("/skills");
 })
 
 

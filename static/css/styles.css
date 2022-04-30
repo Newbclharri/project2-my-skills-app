@@ -17,9 +17,7 @@ body{
     font-size: var(--fontSize);
 }
 
-/* label{
-    margin-top: 20px;
-} */
+
 
 a{
     text-decoration: none;
@@ -29,10 +27,11 @@ a :hover{
     color: orange;
 }
 
+
 input[type="checkbox"]{
     /* margin-left: 10px;
     margin-right: 20px; */
-    margin: auto;
+    /* margin: auto; */
     width: 25px;
     height: 25px;
 }
@@ -52,6 +51,12 @@ header{
     font-size: var(--fontSizeBig);
 }
 /* index_ejs_______________________________________________ */
+
+
+.action{
+    width: fit-content;
+    display: inline;
+}
 .skill{
     width: fit-content;
     display: inline;
@@ -68,14 +73,13 @@ header{
     margin-left: 20px;
 }
 
-.checkmark :after{
-    display:block;
-}
 
 .checked{
     text-decoration: line-through;
+   
 }
 
-input[type="checkbox"]:checked + label{
-    text-decoration: line-through;
+.divider{
+    width: 100%;
+    background-color: black;
 }
