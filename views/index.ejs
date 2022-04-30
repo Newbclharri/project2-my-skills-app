@@ -20,20 +20,19 @@
                 <form action="/skill" method="post">
                     <input type="text" name="skill" placeholder="skill">
                     <input type="text" name="resource" placeholder="resource">
-                    <input type="submit" value="Add">
+                    <input class="add" type="submit" value="Add">
                 </form>
             </section>
-            <section class="display-skills"> 
-               
+            <section class="display-skills">                
                 <% for(i = 0; i < skills.length; i++) {%>
-                    <div class="actions-conatiner">
+                    <div class="actions-conatiner" style="margin-bottom: 7px">
                         <form action="/skill/<%= skills[i]._id %>" id="ed<%= skills[i]._id %>" class="action">
                             <input type="submit" value="edit" class="action-input">
                         </form>
                         <form action="/<%= skills[i]._id %>?_method=DELETE" method="post" class="action">
                             <input type="submit" value="delete" class="action-input">
                         </form>
-                    </div>                                        
+                    </div>                                       
                     <form name="<%=i%>" id="<%=i%>" action="/<%= skills[i]._id %>?_method=PUT" method="post" class="container">
                         
                         <input class="checkbox" onChange="formSubmit(<%=i%>)"
@@ -65,17 +64,28 @@
                             <option value="<%= skill.text %>" style="display: block;"><%= skill.text %></option>
                         <%}%> 
                     </select> <br>
-                    <div id="hiddenDiv" style="display: none; width: fit-content; position: relative">
+                    <div id="hiddenDiv" style="display: none">
                         <input id="jrnl-entry" type="text" name="entry"> <br>
-                        <button id="cancel-jrnl" type="button" onclick="clearContent('jrnl-entry')">Cancel</button>
-                        <input type="submit" value="Add Entry" style="position: absolute; right: 0px">   
+                        <div class="hidden-btns">
+                            <button id="cancel-jrnl" class="cancel" type="button" onclick="clearContent('jrnl-entry')">Cancel</button>
+                            <input class="add" type="submit" value="Add Entry">
+                        </div>
+                           
                     </div>                                                              
                 </form> <br>
                 <% for(i = entries.length-1; i >= 0; i--) {%>
                     <div class="entry-container">
-                        <h3>Skill: <%=entries[i].title%></h3>
+                       
+                        <h3 style="display: inline">Skill: <%=entries[i].title%></h3> 
+                        <form action="/entry/<%= entries[i]._id %>?_method=DELETE" method="post" style="display: inline; width: fit-content">
+                            <input type="submit" value="delete">
+                        </form>
+                        <%if(entries[i].edited) {%> 
+                        <p class="edited">Edited: <%= entries[i].updatedAt %></p>
+                        <%} %> 
                         <p><%=entries[i].text%></p>
                         <p class="log"><%=entries[i].createdAt%></p>
+                        <input class="hide" type="text" name="entryId" value="<%= entries[i]._id %>">
                         <div class="entry-divider"></div>
                     </div>                  
                 <%}  %>                
@@ -89,8 +99,12 @@
     </script>
     <script>
         function clearContent(id){
+            const hiddenDiv = document.getElementById("hiddenDiv")
             const jrnlEntry = document.getElementById(id)
             jrnlEntry.value = null;
+            if(hiddenDiv.style.display === "block"){
+                hiddenDiv.style.display = "none"
+            }
         }
     </script>                     
     <script>

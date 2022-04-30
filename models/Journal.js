@@ -10,7 +10,8 @@ const mongoose = require("./connection");
 //Schema
 const journalSchema = new mongoose.Schema({
     title: String,
-    text: String
+    text: String,
+    edited: Boolean
 },
 {timestamps: true});
 

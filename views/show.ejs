@@ -15,21 +15,23 @@
         <main>
             
             <form action="/edit/<%= skill._id %>?_method=PUT" method="post">
+                <input class=update type="submit" value="update">
                 <section class="skill-params"></section>
                     <input type="text" name="skill" value="<%= skill.text %>">
                     <input type="text" name="resource" value="<%= skill.resource %>">
-                </section> <br> <br> <br> <br> <br>
+                </section> <br> <br> <br>
 
                 <section class="skill-entries">
                     <h1 style="color: blue">Entries:</h1> <br>                    
                     <% for(i = entries.length-1; i >= 0; i--) {%>
                         <div class="entry-container">
-                            <input class="edit-entry" type="text" name= text value="<%= entries[i].text %> ">
+                            <input id="edit-entry" type="text" name= text value="<%= entries[i].text %> ">
+                            <input class="hide" type="text" name="entryId" value="<%= entries[i]._id %>">
                             <p class="log"><%=entries[i].createdAt%></p>
                             <div class="entry-divider"></div>
                         </div>                  
                     <%}  %>
-                    <input type="submit" value="update">
+                    
                 </section> 
             </form>                       
         </main>

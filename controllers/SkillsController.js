@@ -41,17 +41,13 @@ router.post("/journal", async (req, res) =>{
     const entry = req.body.entry;
     await Journal.create({
         title: skill,
-        text: entry
+        text: entry,
+        edited: false
     }).catch(err => res.send(err))
     res.redirect("/skills")
 })
 
-//update
-router.put("/edit/:id", (req, res) =>{
-    // const id =req.params.id;
-    // const skill = await Skill.findById(id).catch(err => res.send(err))
-    res.json(req.body)
-})
+//show
 router.get("/skill/:id", async (req, res) =>{
 
     const id = req.params.id;
@@ -61,6 +57,19 @@ router.get("/skill/:id", async (req, res) =>{
     res.render("show.ejs", {
         skill: skill,
         entries: entries})
+})
+
+//update
+router.put("/edit/:id", async (req, res) =>{
+    const skillId =req.params.id;
+    const skill = req.body.skill
+    const resource = req.body.resource
+    const entryId = req.body.entryId
+    const text = req.body.text;
+    await Skill.findByIdAndUpdate(skillId,{text: skill, resource: resource}).catch(err => res.send(err))
+    const entry = await Journal.findByIdAndUpdate(entryId, {title: skill, text:text, edited: true})
+    res.redirect("/skills")
+    // res.json(req.body)
 })
 
 
@@ -74,6 +83,11 @@ router.put("/:id", async (req, res)=>{
 })
 
 //delete
+router.delete("/entry/:id", async (req, res)=>{
+    const id = req.params.id;
+    await Journal.findByIdAndDelete(id).catch(err => res.send(err))
+    res.redirect("/skills");
+})
 router.delete("/:id", async (req, res) =>{
     const id = req.params.id
     await Skill.findByIdAndDelete(id).catch(err => res.send(err))
