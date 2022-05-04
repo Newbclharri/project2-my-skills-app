@@ -52,7 +52,7 @@ form{
 button{
     width: var(--buttonWidth);
     border-radius: var(--buttonRadius);
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     height: 4vh;
     box-shadow: var(--boxShadow);
@@ -65,7 +65,7 @@ input[type="text"]{
 }
 
 input[type="submit"]{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     width: 6vh;
     padding: 5px;
@@ -75,6 +75,7 @@ input[type="submit"]{
 
 .update{
     background-color: aquamarine;
+    font-size: 12px;
 }
 
 input[type="checkbox"]{
@@ -192,7 +193,7 @@ border-radius: 50px;
 }
 
 #edit-entry{
-    width: 100%;
+    width: 50%;
     margin-bottom: 20px;
     font-size: 30px;
 }

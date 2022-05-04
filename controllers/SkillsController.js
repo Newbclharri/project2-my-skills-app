@@ -19,6 +19,18 @@ router.get("/skills", async (req, res) =>{
 })
 
 //create
+
+router.post("/journal", async (req, res) =>{
+    const skill = req.body.skill;
+    const entry = req.body.entry;
+    await Journal.create({
+        title: skill,
+        text: entry,
+        edited: false
+    }).catch(err => res.send(err))
+    res.redirect("/skills")
+})
+
 router.post("/skill", async (req, res) =>{
     const skill = req.body.skill;
     const resource = req.body.resource || "https://www.google.com/"
@@ -31,16 +43,6 @@ router.post("/skill", async (req, res) =>{
     res.redirect("/skills")
 })
 
-router.post("/journal", async (req, res) =>{
-    const skill = req.body.skill;
-    const entry = req.body.entry;
-    await Journal.create({
-        title: skill,
-        text: entry,
-        edited: false
-    }).catch(err => res.send(err))
-    res.redirect("/skills")
-})
 
 //show
 router.get("/skill/:id", async (req, res) =>{
@@ -59,15 +61,17 @@ router.put("/edit/:id", async (req, res) =>{
     const skillId =req.params.id;
     const skill = req.body.skill
     const resource = req.body.resource
-    const entryId = req.body.entryId
-    const text = req.body.text;
+    const entryIds = req.body.entryIds
+    const allEntryBodies = req.body.text; //an array of text.  form body key title should be changed to reflect a list
     await Skill.findByIdAndUpdate(skillId,{text: skill, resource: resource}).catch(err => res.send(err))
-    const entry = await Journal.findByIdAndUpdate(entryId, {title: skill, text:text, edited: true})
+    for(i = 0; i < entryIds.length; i++){
+        let entry = await Journal.findByIdAndUpdate(entryIds[i], {title: skill, text: allEntryBodies[i], edited: true})
+    }
     res.redirect("/skills")
     // res.json(req.body)
 })
 
-
+//checkbox update
 router.put("/:id", async (req, res)=>{
     const id = req.params.id
     // const status = !!req.body.checked
@@ -88,6 +92,14 @@ router.delete("/:id", async (req, res) =>{
     await Skill.findByIdAndDelete(id).catch(err => res.send(err))
     res.redirect("/skills");
 })
+
+
+
+// function editEntries(entryIds, entries){
+//     for(i = 0; i < entryIds.length; i++){
+//         await
+//     }
+// }
 
 
 /////////////

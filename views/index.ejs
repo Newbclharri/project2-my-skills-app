@@ -3,9 +3,9 @@
     <head>
         <%- include("./partials/head.ejs") %>
         <script>
-            const skills = <%- JSON.stringify(skills)%>
-            const entries = <%- JSON.stringify(entries)%>
-            const forms = document.querySelectorAll("form")
+            const skills = <%- JSON.stringify(skills)%>;
+            const entries = <%- JSON.stringify(entries)%>;
+            const forms = document.querySelectorAll("form");
             let inputCheck = null;
             let button = null;
         </script>
@@ -26,7 +26,7 @@
             <section class="display-skills">                
                 <% for(i = 0; i < skills.length; i++) {%>
                     <div class="actions-conatiner" style="margin-bottom: 7px">
-                        <form action="/skill/<%= skills[i]._id %>" id="ed<%= skills[i]._id %>" class="action">
+                        <form action="/skill/<%= skills[i]._id %>" class="action">
                             <input type="submit" value="edit" class="action-input">
                         </form>
                         <form action="/<%= skills[i]._id %>?_method=DELETE" method="post" class="action">
@@ -40,7 +40,7 @@
                             
                             <% if(skills[i].completed) {%>
                             <script>
-                                inputCheck = document.getElementById(`${skills[<%=i%>]._id}`)
+                                inputCheck = document.getElementById(skills[<%=i%>]._id)
                                 // console.log(input)
                                 inputCheck.setAttribute("checked","checked")                               
                             </script>                          
