@@ -10,9 +10,9 @@ const Journal = require("../models/Journal")
 /////////////////
 
 //root / debug route
-// router.get("/", (req,res) =>{
-//     res.send("<h1>Hello World</h1><br></br><p>Try adding extension <span style='font-weight: bold'>/skills</span> in your browser url.</p>")
-// })
+router.get("/", (req,res) =>{
+    res.status(404).redirect("/skills");
+})
 
 //index
 router.get("/skills", async (req, res) =>{
