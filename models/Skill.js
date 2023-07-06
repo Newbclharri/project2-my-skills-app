@@ -11,7 +11,6 @@ const mongoose = require("./connection");
 const skillSchema = new mongoose.Schema({
     text: String,
     resource: String,
-    journal: String,
     completed: Boolean
 }, 
 {timestamps: true});

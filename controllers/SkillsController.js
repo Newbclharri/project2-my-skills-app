@@ -9,6 +9,11 @@ const Journal = require("../models/Journal")
 // Routes
 /////////////////
 
+//root
+router.get("/", (req,res) =>{
+    res.send("<h1>Hello World</h1><br></br><p>Try adding extension <span style='font-weight: bold'>/skills</span> in your browser url.</p>")
+})
+
 //index
 router.get("/skills", async (req, res) =>{
     const skills = await Skill.find({}).catch(err => res.send(err));
